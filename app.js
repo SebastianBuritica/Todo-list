@@ -17,6 +17,13 @@ let tareas = {
   }
 }
 
+document.addEventListener('DOMContentLoaded', e => {
+    pintarTareas()
+})
+
+listaTarea.addEventListener('click', e => {
+    btnAccion(e)
+})
 
 // console.log(Date.now())
 
@@ -30,7 +37,7 @@ formulario.addEventListener('submit', e => {
 
 const setTarea = e => {
     if(input.value.trim() === '') {
-        console.log('esta vacio')
+        // console.log('esta vacio')
         return
     }
     
@@ -43,4 +50,24 @@ const setTarea = e => {
 
     formulario.reset()
     input.focus()
+
+    pintarTareas()
+}
+
+const pintarTareas = () => {
+    listaTarea.innerHTML = ''
+    Object.values(tareas).forEach(tarea => {
+        const clone = template.cloneNode(true)
+        clone.querySelector('p').textContent = tarea.texto
+        fragment.appendChild(clone)
+    })
+    listaTarea.appendChild(fragment)
+}
+
+const btnAccion = e => {
+    console.log(e.target.classList.contains('fa-circle-check'))
+    if(e.target.classList.contains('fa-circle-check')) {
+
+    }
+    e.stopPropagation()
 }
