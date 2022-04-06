@@ -39,7 +39,7 @@ const setTarea = e => {
         texto: input.value,
         estado: false
     }
-    console.log(tarea)
+    tareas[tarea.id] = {...tarea}
 
     formulario.reset()
     input.focus()
